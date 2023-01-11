@@ -29,7 +29,7 @@ const MenuItems = ({ isMobile, active, setActive }) => {
             ? 'dark:text-white text-nft-black-1'
             : 'dark:text-nft-gray-3 text-nft-gray-2'}`}
         >
-          <Link href={generateLink(i)}>{item}</Link>
+          <Link className={`${isMobile && 'text-3xl p-4'}`} href={generateLink(i)}>{item}</Link>
         </li>
       ))}
     </ul>
@@ -62,9 +62,9 @@ const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const router = useRouter();
   const [active, setActive] = useState('Explore NFTs');
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-
     /* for the nagivation bar */
     <nav className="fixed z-10 flex-row w-full p-4 bg-white border-b flexBetween dark:bg-nft-dark dark:border-nft-black-1 border-nft-gray-1">
       <div className="flex flex-row justify-start flex-1">
@@ -75,12 +75,14 @@ const Navbar = () => {
           </div>
         </Link>
         <Link href="/">
-          {/* make display = flex being not hidden */}
+          {/* make display = flex being not hidden, following for small screen */}
           <div className="hidden md:flex" onClick={() => {}}>
             <Image src={images.logo02} objectFit="contian" width={32} height={32} alt="logo" />
           </div>
         </Link>
       </div>
+
+      {/* this is the div for the large screen  */}
       <div className="flex flex-row justify-end flex-initial">
         <div className="flex items-center mr-2">
           <input type="checkbox" className="checkbox" checked={theme === 'light'} id="checkbox" onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
@@ -90,14 +92,35 @@ const Navbar = () => {
             <div className="absolute bg-white rounded-full ball" />
           </label>
         </div>
-      </div>
-      <div className="flex md:hidden">
-        <MenuItems active={active} setActive={setActive} />
-        <div>
-          <ButtonGroup setActive={setActive} router={router} />
+        <div className="flex md:hidden">
+          <MenuItems active={active} setActive={setActive} />
+          <div>
+            <ButtonGroup setActive={setActive} router={router} />
+          </div>
         </div>
-
       </div>
+
+      {/* right side manu for the mobile device */}
+      <div className="hidden ml-3 md:flex">
+        {isOpen
+          ? (
+            <i className="fa-solid fa-xmark fa-2xl fa-fade fa-manual" onClick={() => setIsOpen(false)} />
+          ) : (
+            <i className="fa-solid fa-bars fa-2xl fa-fade fa-manual" onClick={() => setIsOpen(true)} />
+          )}
+        {isOpen && (
+          <div className="fixed inset-0 z-10 flex flex-col justify-between bg-white top-65 dark:bg-nft-dark nav-h">
+            <div className="flex-1 p-4">
+              {/* isMobile默认为true */}
+              <MenuItems active={active} setActive={setActive} isMobile />
+            </div>
+            <div className="p-4 border-t dark:border-nft-black-1 border-nft-gray-1">
+              <ButtonGroup setActive={setActive} router={router} />
+            </div>
+          </div>
+        )}
+      </div>
+
     </nav>
   );
 };

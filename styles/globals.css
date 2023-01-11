@@ -58,6 +58,11 @@
   color: yellow;
 }
 
+.fa-manual {
+  --fa-animation-duration: 2s; 
+  --fa-fade-opacity: 0.4;
+}
+
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s; /* need to be the same as previous */
