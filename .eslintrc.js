@@ -28,7 +28,7 @@ module.exports = {
     'react/jsx-no-constructed-context-values': 0,
     'import/extensions': 0,
     'react/prop-types': 0,
-    'linebreak-sytle': 0,
+    'linebreak-style': [0, 'error', 'windows'],
     'react/state-in-constructor': 0,
     'import/prefer-default-export': 0,
     'react/react-in-jsx-scope': 'off',
