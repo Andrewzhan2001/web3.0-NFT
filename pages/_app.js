@@ -8,7 +8,9 @@ const App = ({ Component, pageProps }) => (
   <ThemeProvider attribute="class" defaultTheme="dark">
     <div className="min-h-screen bg-white dark:bg-nft-dark">
       <Navbar />
-      <Component {...pageProps} />
+      <div className="pt-65">
+        <Component {...pageProps} />
+      </div>
       <Footer />
     </div>
     {/* fontawesome for icons on the page */}
