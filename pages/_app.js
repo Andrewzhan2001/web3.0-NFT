@@ -14,7 +14,7 @@ const App = ({ Component, pageProps }) => (
       <Footer />
     </div>
     {/* fontawesome for icons on the page */}
-    <script src="https://kit.fontawesome.com/b32c0febbc.js" crossOrigin="anonymous" />
+    <Script src="https://kit.fontawesome.com/b32c0febbc.js" crossOrigin="anonymous" />
   </ThemeProvider>
 
 );

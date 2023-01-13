@@ -42,7 +42,6 @@ export default {
   heartOutline,
   heart,
   logo,
-  logo,
   search,
   tick,
   cross,
