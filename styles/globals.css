@@ -8,6 +8,10 @@
   background: linear-gradient(117deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 63%, rgba(252,176,69,1) 100%);
 }
 
+.nft-card-gradient{
+  background: linear-gradient(38deg, rgba(48,56,153,1) 0%, rgba(108,46,149,1) 45%, rgba(190,30,204,1) 97%);
+}
+
 .white-bg{
   background: rgba(255,255,255, 0.2);
 }

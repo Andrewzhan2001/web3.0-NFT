@@ -70,14 +70,14 @@ const Navbar = () => {
       <div className="flex flex-row justify-start flex-1">
         <Link href="/">
           <div className="cursor-pointer flexCenter md:hidden">
-            <Image src={images.logo02} objectFit="contian" width={32} height={32} alt="logo" />
+            <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
             <p className="ml-1 text-lg font-semibold dark:text-white text-nft-black-1">CryptoMarket</p>
           </div>
         </Link>
         <Link href="/">
           {/* make display = flex being not hidden, following for small screen */}
           <div className="hidden md:flex" onClick={() => {}}>
-            <Image src={images.logo02} objectFit="contian" width={32} height={32} alt="logo" />
+            <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
           </div>
         </Link>
       </div>
