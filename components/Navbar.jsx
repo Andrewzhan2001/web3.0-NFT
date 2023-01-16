@@ -96,9 +96,9 @@ const Navbar = () => {
           </label>
         </div>
         <div className="flex md:hidden">
-          <MenuItems active={active} setActive={setActive} />
+          <MenuItems active={active} setActive={setActive} setIsOpen={setIsOpen}/>
           <div>
-            <ButtonGroup setActive={setActive} router={router} />
+            <ButtonGroup setActive={setActive} router={router} setIsOpen={setIsOpen}/>
           </div>
         </div>
       </div>

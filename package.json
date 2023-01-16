@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "@types/react": "18.0.26",
     "autoprefixer": "10.4.2",
     "eslint": "^8.31.0",
     "eslint-config-airbnb": "^19.0.4",
