@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { Banner, CreatorCard, NFTCard } from '../components';
 import images from '../assets';
 import { makeId } from '../utils/makeId';
+import { NFTContext } from '../context/NFTContext';
 // index in each folder will match all route with that folder
 // next.js use _app.js to initialize pages and taking routes
 // _document.js run at the time server build the object
@@ -14,8 +15,10 @@ import { makeId } from '../utils/makeId';
 const Home = () => {
   const parentRef = useRef(null);
   const scrollRef = useRef(null);
+  const { fetchNFTs } = useContext(NFTContext);
   const { theme } = useTheme();
   const [hideButtons, setHideButtons] = useState(false);
+  const [NFTs, setNFTs] = useState([]);
   const handleScroll = (direction) => {
     const { current } = scrollRef;
     const scrollAmount = window.innerWidth > 1800 ? 270 : 210;
@@ -25,6 +28,9 @@ const Home = () => {
       current.scrollLeft += scrollAmount;
     }
   };
+  useEffect(() => {
+    fetchNFTs().then((items) => { setNFTs(items); console.log(items); });
+  }, []);
 
   /* 拿到这两个ref的current变量，通过addeventlistener来让他每次window变化的时候都run这个function
     每次render结束的时候会清除上一次的地eventlistener */
@@ -88,7 +94,8 @@ const Home = () => {
             </div>
           </div>
           <div className="flex flex-wrap justify-start w-full mt-3 md:justify-center">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+            {NFTs.map((nft) => <NFTCard key={nft.tokenId} nft={nft} />)}
+            {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
               <NFTCard
                 key={`nft-${i}`}
                 nft={{
@@ -100,7 +107,7 @@ const Home = () => {
                   description: 'Extraordinary NFT on Sale',
                 }}
               />
-            ))}
+            ))} */}
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ export const NFTContext = React.createContext();
 // connect to infura: blockchain development suite, access to IPFS networks
 const projectId = '2KSYgPn91DZOn3plcnaIKz4tjYy';
 const projectSecret = '4f795fbd56d61ee3b900f9bd0a20f033';
-const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+const auth = `Basic ${Buffer.from(`${projectId}:${projectSecret}`).toString('base64')}`;
 const client = ipfsHttpClient({
   host: 'ipfs.infura.io',
   port: 5001,
@@ -25,15 +25,15 @@ const client = ipfsHttpClient({
   headers: {
     authorization: auth,
     'Access-Control-Allow-Origin': '*',
-  }
-})
+  },
+});
 
 // get the contract we deployed, and contract need to know who is interacting with it.
 const fetchContract = (signerOrProvider) => new ethers.Contract(MarketAddress, MarketAddressABI, signerOrProvider);
 // input will provide a props object with children variable
 // everything side this tag will be its children(child tags + all information between it)
 export const NFTProvider = ({ children }) => {
-  const nftCurrency = 'MATIC';
+  const nftCurrency = 'ETH';
   const [currentAccount, setcurrentAccount] = useState('');
 
   // check use whether user has metamask installed
@@ -71,7 +71,7 @@ export const NFTProvider = ({ children }) => {
       const url = `https://tianyi.infura-ipfs.io/ipfs/${fileAdded.path}`; // path to newly created and uploaded NFT
       return url;
     } catch (error) {
-      console.log('ERROR on image uploading to IPFS');
+      console.log(`ERROR on image uploading to IPFS${error.message}`);
     }
   };
 
@@ -102,17 +102,46 @@ export const NFTProvider = ({ children }) => {
     try {
       /* upload this entire data to the IPFS */
       const added = await client.add(data);
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`; // path to newly created and uploaded NFT
+      console.log(added);
+      const url = `https://tianyi.infura-ipfs.io/ipfs/${added.path}`; // path to newly created and uploaded NFT
       await createSale(url, price);
       // 直接传到主页面 /路径下面
       router.push('/');
     } catch (error) {
       console.log('ERROR on file uploading to IPFS');
+      console.log(error);
     }
+  };
+  // we want to fetch all the nfts in the marketplace
+  const fetchNFTs = async () => {
+    const provider = new ethers.providers.JsonRpcBatchProvider();
+    // fetch all the nfts in the marketplace
+    const contract = fetchContract(provider);
+    const data = await contract.fetchMarketItems();
+    // 能在所有async的function跑完后再返回值as list
+    // this price is human unreadable format in wei
+    const items = await Promise.all(data.map(async ({ tokenId, seller, owner, price: unhumanPrice }) => {
+      const tokenURI = await contract.tokenURI(tokenId);
+      // the otter brace is the metadata we get from axios contains all the data we put in createSales() function
+      const { data: { image, name, description } } = await axios.get(tokenURI);
+      const price = ethers.utils.formatUnits(unhumanPrice.toString(), 'ether');
+      // items is the array of following object
+      return {
+        price,
+        tokenId: tokenId.toNumber(),
+        seller,
+        owner,
+        image,
+        name,
+        description,
+        tokenURI,
+      };
+    }));
+    return items;
   };
 
   return (
-    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT }}>
+    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs }}>
       {children}
     </NFTContext.Provider>
   );
