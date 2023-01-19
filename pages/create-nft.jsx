@@ -5,15 +5,19 @@ import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { Button, Input } from '../components';
 import images from '../assets';
+import { NFTContext } from '../context/NFTContext';
 
 const CreateNFT = () => {
   const { theme } = useTheme();
   const [fileUrl, setfileUrl] = useState(null);
   const [formInput, setFormInput] = useState({ price: '', name: '', description: '' });
-
+  const { uploadToIPFS, createNFT } = useContext(NFTContext);
+  const router = useRouter();
   // upload file to IPFS(blockchain)
-  const onDrop = useCallback((acceptedFiles) => {
-
+  // the file will be provided by dropzone
+  const onDrop = useCallback(async (acceptedFile) => {
+    const url = await uploadToIPFS(acceptedFile);
+    setfileUrl(url);
   }, []);
 
   /* after get the file, call this onDrop function, regardless accepted or rejected */
@@ -25,10 +29,11 @@ const CreateNFT = () => {
 
   const fileStyle = useMemo(
     () => (
-      `dark:bg-nft-black-1 bg-white border dark:border-white border-nft-gray-2 flex flex-col items-center p-5 rounded-sm border-dashed  
-       ${isDragActive ? ' border-file-active ' : ''} 
-       ${isDragAccept ? ' border-file-accept ' : ''} 
-       ${isDragReject ? ' border-file-reject ' : ''}`),
+      `dark:bg-nft-black-1 bg-white border flex flex-col items-center p-5 rounded-sm border-dashed  
+       ${isDragActive ? ' border-file-active border-4' : ''} 
+       ${isDragAccept ? ' border-file-accept border-4' : ''} 
+       ${isDragReject ? ' border-file-reject border-4' : ''}
+       ${!isDragActive && !isDragAccept && !isDragReject ? 'dark:border-white border-nft-gray-2' : ''}`),
     [isDragActive, isDragReject, isDragAccept],
   );
 
@@ -54,7 +59,7 @@ const CreateNFT = () => {
             {fileUrl && (
               <aside>
                 <div>
-                  <Image src={fileUrl} alt="asset_file" />
+                  <Image width={300} height={300} src={fileUrl} alt="asset_file" />
                 </div>
               </aside>
             )}
@@ -86,7 +91,7 @@ const CreateNFT = () => {
             btnName="Create Item"
             btnType="primary"
             classStyles="rounded-xl"
-            handleClick={() => {}}
+            handleClick={() => createNFT(formInput, fileUrl, router)}
           />
         </div>
       </div>

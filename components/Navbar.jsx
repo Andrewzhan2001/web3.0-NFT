@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import images from '../assets';
 import { Button } from '.';
+import { NFTContext } from '../context/NFTContext';
 
 const MenuItems = ({ isMobile, active, setActive, setIsOpen }) => {
   const generateLink = (i) => {
@@ -38,8 +39,9 @@ const MenuItems = ({ isMobile, active, setActive, setIsOpen }) => {
 };
 
 const ButtonGroup = ({ setActive, router, setIsOpen }) => {
-  const hasConnected = true;
-  return hasConnected ? (
+  const { connectWallet, currentAccount } = useContext(NFTContext);
+
+  return currentAccount ? (
     <Button
       btnName="Create"
       classStyles="mx-2 rounded-xl"
@@ -54,6 +56,7 @@ const ButtonGroup = ({ setActive, router, setIsOpen }) => {
       btnName="Connect"
       classStyles="mx-2 rounded-xl"
       handleClick={() => {
+        connectWallet();
         setIsOpen(false);
       }}
     />
@@ -96,9 +99,9 @@ const Navbar = () => {
           </label>
         </div>
         <div className="flex md:hidden">
-          <MenuItems active={active} setActive={setActive} setIsOpen={setIsOpen}/>
+          <MenuItems active={active} setActive={setActive} setIsOpen={setIsOpen} />
           <div>
-            <ButtonGroup setActive={setActive} router={router} setIsOpen={setIsOpen}/>
+            <ButtonGroup setActive={setActive} router={router} setIsOpen={setIsOpen} />
           </div>
         </div>
       </div>
