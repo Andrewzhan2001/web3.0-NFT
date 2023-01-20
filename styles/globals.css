@@ -81,6 +81,11 @@
   animation-name: fadeIn;;
 }
 
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;;
+}
+
 .flexCenter {
   display: flex;
   justify-content: center;
