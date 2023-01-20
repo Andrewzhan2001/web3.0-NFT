@@ -92,7 +92,7 @@ const Navbar = () => {
       <div className="flex flex-row justify-end flex-initial">
         <div className="flex items-center mr-2">
           <input type="checkbox" className="checkbox" checked={theme === 'light'} id="checkbox" onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
-          <label htmlFor="checkbox" className="relative p-1 bg-black w-11 rounded-2xl flexBetween label">
+          <label htmlFor="checkbox" className="relative p-1 bg-black cursor-pointer w-11 rounded-2xl flexBetween label">
             <i className="fas fa-sun fa-shake" />
             <i className="fas fa-moon fa-shake" />
             <div className="absolute bg-white rounded-full ball" />
@@ -107,7 +107,7 @@ const Navbar = () => {
       </div>
 
       {/* right side manu for the mobile device */}
-      <div className="hidden ml-3 md:flex">
+      <div className="hidden ml-3 cursor-pointer md:flex">
         {isOpen
           ? (
             <i className="fa-solid fa-xmark fa-2xl fa-fade fa-manual" onClick={() => setIsOpen(false)} />

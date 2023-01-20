@@ -90,7 +90,9 @@ export const NFTProvider = ({ children }) => {
     const contract = fetchContract(signer);
     const listingPrice = await contract.getListingPrice();
     // the value will be accessed by msg object in solidity
-    const transaction = await contract.createToken(fileURL, price, { value: listingPrice.toString() });
+    const transaction = !isReselling
+      ? await contract.createToken(fileURL, price, { value: listingPrice.toString() })
+      : await contract.resellToken(id, price, { value: listingPrice.toString() });
     await transaction.wait();
   };
   // create this nft and pass it to the market place
@@ -188,7 +190,7 @@ export const NFTProvider = ({ children }) => {
   };
 
   return (
-    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs, fetchMyNFTSOrListedNFTs, buyNft }}>
+    <NFTContext.Provider value={{ nftCurrency, createSale, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs, fetchMyNFTSOrListedNFTs, buyNft }}>
       {children}
     </NFTContext.Provider>
   );

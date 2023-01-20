@@ -50,7 +50,7 @@ const Footer = () => {
 
       <div className="w-full px-16 mt-5 border-t flexCenter dark:border-nft-black-1 border-nft-gray-1 sm:px-4">
         <div className="flex-row w-full flexBetween minmd:w-4/5 sm:flex-col mt-7"> {/* from minimum to medium let the width to be that 80% */}
-          <p className="text-base font-semibold font-poppins dark:text-white text-nft-black-1">For Tianyi personal use, All Rights Reserved</p>
+          <p className="text-base font-semibold font-poppins dark:text-white text-nft-black-1">Tianyi's Project, All Rights Reserved</p>
           <div className="flex flex-row sm:mt-4">
             {[images.instagram, images.twitter, images.telegram, images.discord].map((image, index) => (
               <div className="mx-2 cursor-pointer" key={`image ${index}`}>
