@@ -6,10 +6,9 @@ import images from '../assets';
 import { shortenAddress } from '../utils/shortenAddress';
 
 const mynfts = () => {
-  const { fetchMyNFTsOrListedNFTs, currentAccount } = useContext(NFTContext);
+  const { fetchMyNFTSOrListedNFTs, currentAccount } = useContext(NFTContext);
   const [nfts, setNfts] = useState([]);
   const [loading, setLoading] = useState(false);
-  
 
   if (loading) {
     return (
@@ -18,6 +17,13 @@ const mynfts = () => {
       </div>
     );
   }
+  useEffect(() => {
+    fetchMyNFTSOrListedNFTs('fetchMyNFTs')
+      .then((items) => {
+        setNfts(items);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-start w-full min-h-screen">
@@ -30,7 +36,7 @@ const mynfts = () => {
           <p className="mt-6 text-2xl font-semibold font-poppins dark:text-white text-nft-black-1">{shortenAddress(currentAccount)}</p>
         </div>
       </div>
-      {(!loading && nfts.length) ? (
+      {(!loading && nfts.length === 0) ? (
         <div className="p-16 flexCenter sm:p-4">
           <h1 className="text-3xl font-extrabold font-poppins dark:text-white text-nft-black-1">No NFTs owned</h1>
         </div>
@@ -40,7 +46,7 @@ const mynfts = () => {
             SearchBar
           </div>
           <div className="flex flex-wrap w-full mt-3">
-            {nfts.map((nft) => <NFTCard key={`nft-${nft.tokenId}`} nft={nft} />)}
+            {nfts.map((nft) => <NFTCard key={`nft-${nft.tokenId}`} nft={nft} onProfile />)}
           </div>
         </div>
       )}

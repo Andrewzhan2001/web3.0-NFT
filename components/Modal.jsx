@@ -5,6 +5,7 @@ import images from '../assets';
 const Modal = ({ header, body, footer, handleClick }) => {
   // use useRef when we want to interact with jsx elements with javascript
   const modalRef = useRef(null);
+  // call handleClick when you click outside the modal modal component
   const handleClickOutside = (event) => {
     // checking if the modalRef contains the click event
     if (modalRef.current && !modalRef.current.contains(event.target)) {
