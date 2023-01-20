@@ -29,7 +29,7 @@ const Home = () => {
     }
   };
   useEffect(() => {
-    fetchNFTs().then((items) => { setNFTs(items); console.log(items); });
+    fetchNFTs().then((items) => { setNFTs(items); });
   }, []);
 
   /* 拿到这两个ref的current变量，通过addeventlistener来让他每次window变化的时候都run这个function

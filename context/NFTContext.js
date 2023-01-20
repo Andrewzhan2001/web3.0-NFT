@@ -77,7 +77,7 @@ export const NFTProvider = ({ children }) => {
 
   // push the NFT to the marketplace
   const createSale = async (fileURL, inputPrice, isReselling, id) => {
-    // connect to actual smart contract
+    // connect to actual smart contract provider ： metamask
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
@@ -140,8 +140,42 @@ export const NFTProvider = ({ children }) => {
     return items;
   };
 
+  // type will specify the type of NFT we want, my nft or listed nft
+  const fetchMyNFTSOrListedNFTs = async (type) => {
+    // connect to actual smart contract
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    // connect to the metamask
+    const provider = new ethers.providers.Web3Provider(connection);
+    // who is actually making the sale and create nft
+    const signer = provider.getSigner();
+    const contract = fetchContract(signer);
+
+    const data = type === 'fetchListed'
+      ? await contract.fetchItemsListed()
+      : await contract.fetchMyNFTs();
+    const items = await Promise.all(data.map(async ({ tokenId, seller, owner, price: unhumanPrice }) => {
+      const tokenURI = await contract.tokenURI(tokenId);
+      // the otter brace is the metadata we get from axios contains all the data we put in createSales() function
+      const { data: { image, name, description } } = await axios.get(tokenURI);
+      const price = ethers.utils.formatUnits(unhumanPrice.toString(), 'ether');
+      // items is the array of following object
+      return {
+        price,
+        tokenId: tokenId.toNumber(),
+        seller,
+        owner,
+        image,
+        name,
+        description,
+        tokenURI,
+      };
+    }));
+    return items;
+  };
+
   return (
-    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs }}>
+    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs, fetchMyNFTSOrListedNFTs }}>
       {children}
     </NFTContext.Provider>
   );

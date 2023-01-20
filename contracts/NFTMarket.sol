@@ -146,6 +146,7 @@ contract NFTMarket is ERC721URIStorage{
     }
     return items;
   }
+  // fetch all NFTS that person has purchased
   function fetchMyNFTs() public view returns (MarketItem[] memory) {
     uint totalItemCount = _tokenIds.current();
     uint itemCount = 0;
