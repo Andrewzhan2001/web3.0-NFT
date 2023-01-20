@@ -3,8 +3,10 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { Banner, CreatorCard, NFTCard } from '../components';
 import images from '../assets';
-import { makeId } from '../utils/makeId';
+/* import { makeId } from '../utils/makeId'; */
 import { NFTContext } from '../context/NFTContext';
+import { getCreators } from '../utils/getTopCreators';
+import { shortenAddress } from '../utils/shortenAddress';
 // index in each folder will match all route with that folder
 // next.js use _app.js to initialize pages and taking routes
 // _document.js run at the time server build the object
@@ -19,6 +21,7 @@ const Home = () => {
   const { theme } = useTheme();
   const [hideButtons, setHideButtons] = useState(false);
   const [NFTs, setNFTs] = useState([]);
+  const topCreators = getCreators(NFTs);
   const handleScroll = (direction) => {
     const { current } = scrollRef;
     const scrollAmount = window.innerWidth > 1800 ? 270 : 210;
@@ -60,18 +63,30 @@ const Home = () => {
           childStyles="md:text-4xl sm:text-2xl xs:text-xl text-left text-white"
         />
         <div>
-          <h1 className="ml-4 text-2xl font-semibold font-poppins dark:text-white text-nft-black-1 minlg:text-4xl xs:ml-0">Best Creators</h1>
+          <h1 className="ml-4 text-2xl font-semibold font-poppins dark:text-white text-nft-black-1 minlg:text-4xl xs:ml-0">Top Creators</h1>
           <div className="relative flex flex-1 max-w-full mt-3" ref={parentRef}>
             <div className="flex flex-row overflow-x-scroll select-none w-max no-scrollbar" ref={scrollRef}> {/* overflow的话就有一个x轴的scroll */}
-              {[6, 7, 8, 9, 10].map((i) => (
+              {
+                topCreators.map((creator, index) => (
+                  <CreatorCard
+                    key={creator.seller}
+                    rank={index + 1}
+                    creatorImage={images[`creator${index + 1}`]}
+                    creatorName={shortenAddress(creator.seller)}
+                    creatorEths={creator.sum}
+                  />
+
+                ))
+              }
+              {/*  {[6, 7, 8, 9, 10].map((i) => (
                 <CreatorCard
-                  key={`creator-${i}`}
-                  rank={i}
                   creatorImage={images[`creator${i}`]}
+                  rank={i}
                   creatorName={`0x${makeId(3)}...${makeId(4)}`}
+                  key={`creator-${i}`}
                   creatorEths={10 - i * 0.434}
-                />
-              ))} {/* for creatorEths, to rank from the one with highest amount of etherium */}
+                /> */}
+              {/* for creatorEths, to rank from the one with highest amount of etherium */}
               {!hideButtons && (
               <>
                 <div onClick={() => { handleScroll('left'); }} className="absolute left-0 w-8 h-8 cursor-pointer minlg:w-12 minlg:h-12 top-45">
@@ -100,11 +115,11 @@ const Home = () => {
                 key={`nft-${i}`}
                 nft={{
                   i,
-                  name: `Nifty NFT ${i}`,
-                  price: (10 - i * 0.434).toFixed(2),
                   seller: `0x${makeId(3)}...${makeId(4)}`,
-                  owner: `0x${makeId(3)}...${makeId(4)}`,
+                  price: (10 - i * 0.434).toFixed(2),
                   description: 'Extraordinary NFT on Sale',
+                  name: `Nifty NFT ${i}`,
+                  owner: `0x${makeId(3)}...${makeId(4)}`,
                 }}
               />
             ))} */}
