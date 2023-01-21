@@ -17,7 +17,6 @@ export const NFTContext = React.createContext();
 // connect to infura: blockchain development suite, access to IPFS networks
 const projectId = process.env.NEXT_PUBLIC_INFURA_PROJECTID;
 const projectSecret = process.env.NEXT_PUBLIC_INFURA_PROJECTSECRET;
-console.log(MarketAddress);
 const auth = `Basic ${Buffer.from(`${projectId}:${projectSecret}`).toString('base64')}`;
 const client = ipfsHttpClient({
   host: 'ipfs.infura.io',
