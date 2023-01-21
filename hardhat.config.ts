@@ -1,17 +1,21 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-
-import fs = require('fs');
-
-const privateKey = process.env.PRIVATE_KEY;
+require("dotenv").config();
 
 const config: HardhatUserConfig = {
+  defaultNetwork: "goerli",
   networks: {
     hardhat: {
       chainId: 1337,
     },
+    goerli: {
+      url: 'https://goerli.infura.io/v3/13f9495515fb43598230f80bf43e5607',
+      accounts: [`0x${process.env.NEXT_PUBLIC_PRIVATE_KEY}`],
+    }
   },
-  solidity: "0.8.17",
+  solidity: {
+    version: '0.8.17',
+  },
 };
 
 export default config;
