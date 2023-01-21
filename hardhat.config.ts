@@ -9,7 +9,7 @@ const config: HardhatUserConfig = {
       chainId: 1337,
     },
     goerli: {
-      url: 'https://goerli.infura.io/v3/13f9495515fb43598230f80bf43e5607',
+      url: process.env.NEXT_PUBLIC_MARKETURL,
       accounts: [`0x${process.env.NEXT_PUBLIC_PRIVATE_KEY}`],
     }
   },

@@ -29,6 +29,8 @@ const client = ipfsHttpClient({
   },
 });
 
+const infuraProvider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_MARKETURL);
+
 // get the contract we deployed, and contract need to know who is interacting with it.
 const fetchContract = (signerOrProvider) => new ethers.Contract(MarketAddress, MarketAddressABI, signerOrProvider);
 // input will provide a props object with children variable
@@ -117,7 +119,7 @@ export const NFTProvider = ({ children }) => {
   };
   // we want to fetch all the nfts in the marketplace
   const fetchNFTs = async () => {
-    const provider = new ethers.providers.JsonRpcBatchProvider();
+    const provider = infuraProvider;
     // fetch all the nfts in the marketplace
     const contract = fetchContract(provider);
     const data = await contract.fetchMarketItems();
