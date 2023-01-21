@@ -15,8 +15,9 @@ import { MarketAddress, MarketAddressABI } from './constants';
 export const NFTContext = React.createContext();
 
 // connect to infura: blockchain development suite, access to IPFS networks
-const projectId = '2KSYgPn91DZOn3plcnaIKz4tjYy';
-const projectSecret = '4f795fbd56d61ee3b900f9bd0a20f033';
+const projectId = process.env.NEXT_PUBLIC_INFURA_PROJECTID;
+const projectSecret = process.env.NEXT_PUBLIC_INFURA_PROJECTSECRET;
+console.log(MarketAddress);
 const auth = `Basic ${Buffer.from(`${projectId}:${projectSecret}`).toString('base64')}`;
 const client = ipfsHttpClient({
   host: 'ipfs.infura.io',

@@ -1,6 +1,4 @@
 import React, { useRef } from 'react';
-import Image from 'next/image';
-import images from '../assets';
 
 const Modal = ({ header, body, footer, handleClick }) => {
   // use useRef when we want to interact with jsx elements with javascript

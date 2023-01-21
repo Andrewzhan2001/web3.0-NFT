@@ -4,5 +4,5 @@
 import contract from './NFTMarket.json';
 
 // get the market place address output as console.log in deploy.ts
-export const MarketAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+export const MarketAddress = process.env.NEXT_PUBLIC_MARKET_ADDRESS;
 export const MarketAddressABI = contract.abi;

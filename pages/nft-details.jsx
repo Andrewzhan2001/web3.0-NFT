@@ -16,7 +16,7 @@ const PaymentBodyCmp = ({ nft, nftCurrency }) => (
     <div className="my-5 flexBetweenStart">
       <div className="flex-1 flexStartCenter">
         <div className="relative w-28 h-28">
-          <Image src={nft.image} fill objectFit="cover" />
+          <Image src={nft.image} alt="nft" fill objectFit="cover" />
         </div>
         <div className="flex-col ml-5 flexCenterStart">
           <p className="text-sm font-semibold font-poppins dark:text-white text-nft-black-1 minlg:text-xl">{shortenAddress(nft.seller)}</p>
@@ -163,7 +163,7 @@ const nftdetails = () => {
               />
             </div>
           )}
-          handleClose={() => setsuccessModal(false)}
+          handleClick={() => setsuccessModal(false)}
         />
       )}
     </div>

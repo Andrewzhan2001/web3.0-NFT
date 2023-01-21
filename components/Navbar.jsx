@@ -19,7 +19,7 @@ const MenuItems = ({ isMobile, active, setActive, setIsOpen }) => {
   return (
     <ul className={`list-none flexCenter flex-row  ${isMobile && 'flex-col h-full'}`}>
       {/* for the map i is the index */}
-      {['Explore NFTs', 'Listed / My selling NFTs', 'My Purchased NFTs'].map((item, i) => (
+      {['Explore NFTs', 'My selling NFTs', 'My Purchased NFTs'].map((item, i) => (
         <li
           key={i}
           onClick={() => {
@@ -62,6 +62,24 @@ const ButtonGroup = ({ setActive, router, setIsOpen }) => {
     />
   );
 };
+const checkActive = (active, setActive, router) => {
+  switch (router.pathname) {
+    case '/':
+      if (active !== 'Explore NFTs') setActive('Explore NFTs');
+      break;
+    case '/listed-nfts':
+      if (active !== 'My selling NFTs') setActive('My selling NFTs');
+      break;
+    case '/my-nfts':
+      if (active !== 'My Purchased NFTs') setActive('My Purchased NFTs');
+      break;
+    case '/create-nft':
+      setActive('');
+      break;
+    default:
+      setActive('');
+  }
+};
 
 const Navbar = () => {
   // automatically set the theme which is decided by dark: prefix
@@ -69,6 +87,9 @@ const Navbar = () => {
   const router = useRouter();
   const [active, setActive] = useState('Explore NFTs');
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    checkActive(active, setActive, router);
+  }, [router.pathname]);
 
   return (
     /* for the nagivation bar */
