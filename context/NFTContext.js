@@ -42,7 +42,7 @@ export const NFTProvider = ({ children }) => {
   // make this async as we use await
   const checkConnected = async () => {
     // when you install the metamask, it will inject ethereum object to the window object, so you can get this object not null
-    if (!window.ethereum) return alert('Place install MetaMask to your browser');
+    if (!window.ethereum) return alert('Please install MetaMask to your browser');
     const accounts = await window.ethereum.request({ method: 'eth_accounts' });
     if (accounts.length) {
       setcurrentAccount(accounts[0]);

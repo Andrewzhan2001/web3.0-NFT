@@ -19,14 +19,14 @@ const Footer = () => {
       <div className="flex flex-row w-full px-16 minmd:w-4/5 md:flex-col sm:px-4">
         <div className="flex-col flex-1 flexStart">
           <div className="flexCenter">
-            <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
+            <i className="fa-brands fa-viacoin fa-flip fa-3x text-nft-red-violet" />
             <p className="ml-1 text-lg font-semibold dark:text-white text-nft-dark">CryptoMarket</p>
           </div>
           <p className="mt-6 text-base font-semibold font-poppins dark:text-white text-nft-black-1">Get the latest updates</p>
           {clicked ? (
             <div className="flex items-center justify-center mt-6 bg-white rounded-md md:w-full minlg:w-557 w-357 dark:bg-nft-dark">
-              <i className="fa-solid fa-face-grin-tongue-wink fa-2xl" />
-              <h3 className="ml-3 text-xl font-semibold font-poppins dark:text-white text-nft-black-1">That just joking!</h3>
+              <i className="fa-solid fa-check fa-2xl" />
+              <h3 className="ml-3 text-xl font-semibold font-poppins dark:text-white text-nft-black-1">Thank you for joining the updates!</h3>
             </div>
           ) : (
             <div className="mt-6 bg-white border rounded-md flexBetween md:w-full minlg:w-557 w-357 dark:bg-nft-black-2 dark:border-nft-black-2 border-nft-gray-2">
@@ -43,7 +43,7 @@ const Footer = () => {
           )}
         </div>
         <div className="flex-wrap flex-1 ml-10 flexBetweenStart md:ml-0 md:mt-8">
-          <FooterLinks heading="CryptoKet" items={['Explore', 'How it Works', 'Contact Us']} />
+          <FooterLinks heading="CryptoMarket" items={['Explore', 'How it Works', 'Contact Us']} />
           <FooterLinks heading="Support" items={['Help Center', 'Terms of service', 'Legal', 'Privacy policy']} extraClasses="ml-4" />
         </div>
       </div>

@@ -12,6 +12,8 @@ const CreateNFT = () => {
   const [fileUrl, setfileUrl] = useState(null);
   const [formInput, setFormInput] = useState({ price: '', name: '', description: '' });
   const { uploadToIPFS, createNFT } = useContext(NFTContext);
+  const [loading, setLoading] = useState(false);
+  const [buttonText, setButtonText] = useState('Create NFT');
   const router = useRouter();
   // upload file to IPFS(blockchain)
   // the file will be provided by dropzone
@@ -37,7 +39,7 @@ const CreateNFT = () => {
        ${!isDragActive && !isDragAccept && !isDragReject ? 'dark:border-white border-nft-gray-2' : ''}`),
     [isDragActive, isDragReject, isDragAccept],
   );
-
+  
   return (
     <div className="flex justify-center p-12 sm:px-4 border-file">
       <div className="w-3/5 md:w-full">
@@ -94,10 +96,13 @@ const CreateNFT = () => {
 
         <div className="flex justify-end w-full mt-7">
           <Button
-            btnName="Create Item"
+            btnName={buttonText}
             btnType="primary"
             classStyles="rounded-xl"
-            handleClick={() => createNFT(formInput, fileUrl, router)}
+            handleClick={() => {
+              setButtonText('Creating...');
+              createNFT(formInput, fileUrl, router).then(() => setButtonText('Create NFT'));
+            }}
           />
         </div>
       </div>

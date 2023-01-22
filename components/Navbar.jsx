@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import Image from 'next/image';
 import Link from 'next/link';
-import images from '../assets';
 import { Button } from '.';
 import { NFTContext } from '../context/NFTContext';
 
@@ -97,14 +95,14 @@ const Navbar = () => {
       <div className="flex flex-row justify-start flex-1">
         <Link href="/">
           <div className="cursor-pointer flexCenter md:hidden">
-            <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
+            <i className="fa-brands fa-viacoin fa-flip fa-3x text-nft-red-violet" />
             <p className="ml-1 text-lg font-semibold dark:text-white text-nft-black-1">CryptoMarket</p>
           </div>
         </Link>
         <Link href="/">
           {/* make display = flex being not hidden, following for small screen */}
           <div className="hidden md:flex" onClick={() => {}}>
-            <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
+            <i className="fa-brands fa-viacoin fa-flip fa-3x text-nft-red-violet" />
           </div>
         </Link>
       </div>
