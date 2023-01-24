@@ -39,7 +39,7 @@ const CreateNFT = () => {
        ${!isDragActive && !isDragAccept && !isDragReject ? 'dark:border-white border-nft-gray-2' : ''}`),
     [isDragActive, isDragReject, isDragAccept],
   );
-  
+
   return (
     <div className="flex justify-center p-12 sm:px-4 border-file">
       <div className="w-3/5 md:w-full">
@@ -94,7 +94,7 @@ const CreateNFT = () => {
           handleClick={(e) => setFormInput({ ...formInput, price: e.target.value })}
         />
 
-        <div className="flex justify-end w-full mt-7">
+        <div className="flex flex-col items-end justify-center w-full mt-7">
           <Button
             btnName={buttonText}
             btnType="primary"
@@ -104,6 +104,7 @@ const CreateNFT = () => {
               createNFT(formInput, fileUrl, router).then(() => setButtonText('Create NFT'));
             }}
           />
+          <p className="mt-3 text-xs w-50 dark:text-gray-500">Please ensure your account has 0.025 ETH for the gas fee. Otherwise, there will have no effect.</p>
         </div>
       </div>
     </div>
