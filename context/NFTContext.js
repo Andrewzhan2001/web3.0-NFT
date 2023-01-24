@@ -28,8 +28,6 @@ const client = ipfsHttpClient({
   },
 });
 
-const infuraProvider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_MARKETURL);
-
 // get the contract we deployed, and contract need to know who is interacting with it.
 const fetchContract = (signerOrProvider) => new ethers.Contract(MarketAddress, MarketAddressABI, signerOrProvider);
 // input will provide a props object with children variable
@@ -70,7 +68,7 @@ export const NFTProvider = ({ children }) => {
     try {
       // add file to the IPFS
       const fileAdded = await client.add({ content: file[0] });
-      const url = `https://tianyi.infura-ipfs.io/ipfs/${fileAdded.path}`; // path to newly created and uploaded NFT
+      const url = `${process.env.NEXT_PUBLIC_INFURA_GATEWAY}/ipfs/${fileAdded.path}`; // path to newly created and uploaded NFT
       return url;
     } catch (error) {
       console.log(`ERROR on image uploading to IPFS${error.message}`);
@@ -107,7 +105,7 @@ export const NFTProvider = ({ children }) => {
       /* upload this entire data to the IPFS */
       const added = await client.add(data);
       console.log(added);
-      const url = `https://tianyi.infura-ipfs.io/ipfs/${added.path}`; // path to newly created and uploaded NFT
+      const url = `${process.env.NEXT_PUBLIC_INFURA_GATEWAY}/ipfs/${added.path}`; // path to newly created and uploaded NFT
       await createSale(url, price);
       // 直接传到主页面 /路径下面
       router.push('/');
@@ -118,7 +116,7 @@ export const NFTProvider = ({ children }) => {
   };
   // we want to fetch all the nfts in the marketplace
   const fetchNFTs = async () => {
-    const provider = infuraProvider;
+    const provider = new ethers.providers.JsonRpcBatchProvider();
     // fetch all the nfts in the marketplace
     const contract = fetchContract(provider);
     const data = await contract.fetchMarketItems();
