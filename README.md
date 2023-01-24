@@ -1,51 +1,50 @@
 # `CryptoMarket` - An Extraordinary NFT Marketplace Website
-`CryptoMarket` is a Web3.0 blockchain-based marketplace app where people can discover NFTs on the market, create there own NFTs, even purchase the sell their NFTs here.
+`CryptoMarket` is a Web 3.0 blockchain-based marketplace app where people can discover NFTs on the market, create their own NFTs, and even purchase the sell their NFTs here.
 
-This is an decentralized application power by Ethereum and all transactions are made in Ether(ETH)
+This is a decentralized application powered by Ethereum and all transactions are made in Ether(ETH)
 ## Features
 * This is a `React`-based website with `Next.js` framework.
-* Utilize `Tailwind CSS` to contruct designs of user interfaces
-* This is a fully responsive website with light and dark mode allowes different user interface structures for different screen sizes
-* Upload both image for the NFT and whole NFT item to InterPlanetary File System `IPFS` on`Infura` platform for the storage and peer-to-peer sharing of files.
-* Using `Solidity` to create and implement smart contract.
-* Using `Hardhat` as an ethereum development environment to run, test and deploy smart contract.
+* Utilize `Tailwind CSS` to construct designs of user interfaces
+* This is a fully responsive website with light and dark modes that allow different user interface structures for different screen sizes
+* Upload both images for the NFT and the whole NFT item to the InterPlanetary File System `IPFS` on`Infura` platform for the storage and peer-to-peer sharing of files.
+* Using `Solidity` to create and implement the smart contract.
+* Using `Hardhat` as an Ethereum development environment to run, test and deploy the smart contract.
 * Using `MetaMask` to pair your crypto wallets for checking token balances and signing transactions to create, purchase and sell NFTs.
-* Contracts are deployed to `Avalanche` which is a Web3 dApps platform enable blockchain network to connect and scale
+* Contracts are deployed to `Avalanche` which is a Web3 dApps platform that enable blockchain network to connect and scale
 * Using `NPM` as the package management tool.
 ## Demo
 
 ## How to use
-Please make sure you have enough funds (0.025 ETH) on your account when you create your NFT for the gas fee. Otherwise, website will do nothing.
+Please make sure you have enough funds (0.025 ETH) in your account when you create your NFT for the gas fee. Otherwise, the website will do nothing.
 ### Online Mode
 Link for the [Avalanche faucet](https://faucet.avax.network/). Using this to add
 
-First you need to install MetaMask Wallet extension on your browser. Please refer to this [Link](https://metamask.io/download/)
+First, you need to install the MetaMask Wallet extension on your browser. Please refer to this [Link](https://metamask.io/download/)
 
-Note that in order to check you selling NFTs and NFTs you owned, you need to have an account on **MetaMask**. Also you need to add `Fuji(C-Chain)` network to your Metamask wallet 
+Note that to check your NFTs that are selling on the market and the NFTs you owned, you need to have an account on **MetaMask**. Also, you need to add the `Fuji(C-Chain)` network to your Metamask wallet 
 
-When you create NFTs, please ensure you have enough funds on your account for the gas fee(0.025 ETH), it is the fee paid to Ethereum for processing NFTs
+When you create NFTs, please ensure you have enough funds in your account for the gas fee(0.025 ETH), which is the fee paid to Ethereum for processing NFTs
 
 ### Local Mode
-Checkout `localhost` branch on github and clone this repository.  
+Checkout the `localhost` branch on GitHub and clone this repository.  
 
-You also need to create an IPFS storage on `Infura.io` and get projectId, projectSecret, Dedicated Gateway SubDomain. You need to put those to `.env` file for the environment variable.
+You also need to create an IPFS storage on `Infura.io` and get projectId, projectSecret, Dedicated Gateway SubDomain. You need to put those in the `.env` file for the environment variable.
 
-Then you need to start hardhat network on localhost by running following on  terminal **(you need to go to its root directory first)**
+Then you need to start the hardhat network on localhost by running the following on terminal **(you need to go to its root directory first)**
 ``` bash
 npx hardhat node
 ```
 Then deploy the contract to the localhost network by
 ``` bash
-npx hardhat run scripts/deploy.ts --netw
-ork localhost
+npx hardhat run scripts/deploy.ts --network localhost
 ```
-Copy the address, where you deployed your contract (on terminal) to the `.env` file
+Copy the address, where you deployed your contract (in the output from the terminal) to the `.env` file
 
-Run the program by following command to start this program.
+Run the program by following commands to start this program.
 ``` bash
 npm install
 npm run dev
 ```
 Please make sure your hardhat node is still running on localhost
 
-Then you can add account from accounts generated by `hardhat node` to your MetaMask Wallet and set the network to localhost on MetaMask.
+Then you can add account from accounts generated by the `hardhat node` to your MetaMask Wallet and set the network to localhost on MetaMask.
