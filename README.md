@@ -13,7 +13,7 @@ This is a decentralized application powered by Ethereum and all transactions are
 * Contracts are deployed to `Avalanche` which is a Web3 dApps platform that enable blockchain network to connect and scale
 * Using `NPM` as the package management tool.
 ## Demo
-
+https://user-images.githubusercontent.com/97903569/214473046-7a2b0f84-7023-425c-8692-a3ad06c20dc6.mp4
 ## How to use
 Please make sure you have enough funds (0.025 ETH) in your account when you create your NFT for the gas fee. Otherwise, the website will do nothing.
 
