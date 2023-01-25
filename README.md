@@ -21,6 +21,8 @@ Every time you create, purchase, sell or resell NFTs, you need to pay 0.025ETH g
 
 For using search bar, clean the input before you make another input.
 ### Online Mode
+Visit the website use this link [NFT Market](https://web3nftmarket.vercel.app/)
+
 Link for the [Avalanche faucet](https://faucet.avax.network/). Using this to add test cryptocurrency to your account(only for testing on Testnet, no value on Mainnet)
 
 First, you need to install the MetaMask Wallet extension on your browser. Please refer to this [Link](https://metamask.io/download/)
