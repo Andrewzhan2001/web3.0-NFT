@@ -1,5 +1,5 @@
 # `CryptoMarket` - An Extraordinary NFT Marketplace Website
-`CryptoMarket` is a Web 3.0 blockchain-based marketplace app where people can discover NFTs on the market, create their own NFTs, and even purchase the sell their NFTs here.
+`CryptoMarket` is a Web 3.0 blockchain-based marketplace app where people can discover NFTs on the market, create their own NFTs, even purchase and sell their NFTs here.
 
 This is a decentralized application powered by Ethereum and all transactions are made in Ether(ETH)
 ## Features
@@ -17,15 +17,15 @@ https://user-images.githubusercontent.com/97903569/214473046-7a2b0f84-7023-425c-
 ## How to use
 Please make sure you have enough funds (0.025 ETH) in your account when you create your NFT for the gas fee. Otherwise, the website will do nothing.
 
-Every time you create, purchase, sell or resell NFTs, you need to pay 0.025 gas fee for processing.
+Every time you create, purchase, sell or resell NFTs, you need to pay 0.025ETH gas fee for processing.
 
-In order to use search bar, clean the input before you make another input.
+For using search bar, clean the input before you make another input.
 ### Online Mode
-Link for the [Avalanche faucet](https://faucet.avax.network/). Using this to add
+Link for the [Avalanche faucet](https://faucet.avax.network/). Using this to add test cryptocurrency to your account(only for testing on Testnet, no value on Mainnet)
 
 First, you need to install the MetaMask Wallet extension on your browser. Please refer to this [Link](https://metamask.io/download/)
 
-Note that to check your NFTs that are selling on the market and the NFTs you owned, you need to have an account on **MetaMask**. Also, you need to add the `Fuji(C-Chain)` network to your Metamask wallet 
+Note that to check your NFTs that are selling on the market and the NFTs you owned, you need to have your own account on **MetaMask**. Also, you need to add the `Fuji(C-Chain)` network to your Metamask wallet 
 
 When you create NFTs, please ensure you have enough funds in your account for the gas fee(0.025 ETH), which is the fee paid to Ethereum for processing NFTs
 
