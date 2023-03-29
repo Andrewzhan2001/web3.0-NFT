@@ -10,7 +10,7 @@ This is a decentralized application powered by Ethereum and all transactions are
 * Using `Solidity` to create and implement the smart contract.
 * Using `Hardhat` as an Ethereum development environment to run, test and deploy the smart contract.
 * Using `MetaMask` to pair your crypto wallets for checking token balances and signing transactions to create, purchase and sell NFTs.
-* Contracts are deployed to `Avalanche` which is a Web3 dApps platform that enable blockchain network to connect and scale
+* Contracts are deployed to `Avalanche` which is a Web3 Apps platform that enable blockchain network to connect and scale
 * Using `NPM` as the package management tool.
 ## Demo
 https://user-images.githubusercontent.com/97903569/214473046-7a2b0f84-7023-425c-8692-a3ad06c20dc6.mp4
